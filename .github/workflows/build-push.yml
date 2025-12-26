@@ -13,7 +13,7 @@ jobs:
 
     env:
       IMAGE_NAME: todo-add-tasks-api
-      IMAGE_TAG: v3
+      IMAGE_TAG: v4
       ACR_NAME: test32971
       ACR_LOGIN_SERVER: test32971.azurecr.io
 
@@ -40,6 +40,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker buildx build \
-            --platform linux/amd64 \
-            -t $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG \
-            --push .
+          --platform linux/amd64,linux/arm64 \
+          -t test32971.azurecr.io/todo-add-tasks-api:v4 \
+          --push .
+
